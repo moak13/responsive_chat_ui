@@ -9,6 +9,7 @@ class SplashTabletView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SplashViewModel>.reactive(
+      onModelReady: (model) => model.handleStartup(),
       viewModelBuilder: () => SplashViewModel(),
       builder: (
         BuildContext context,
