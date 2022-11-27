@@ -8,10 +8,10 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout(
-      mobile: const SplashMobileView(),
-      tablet: const SplashTabletView(),
-      desktop: const SplashDesktopView(),
+    return ScreenTypeLayout.builder(
+      mobile: (context) => const SplashMobileView(),
+      tablet: (context) => const SplashTabletView(),
+      desktop: (context) => const SplashDesktopView(),
     );
   }
 }

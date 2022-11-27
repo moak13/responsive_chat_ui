@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import 'core/app/app.router.dart';
+import 'core/core.dart';
 
-void main() {
+Future<void> main() async {
+  await setupLocator();
   runApp(const MyApp());
 }
 
