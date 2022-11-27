@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../chat/screen_type/chat_screen_type.dart';
 import '../../view_model/wrapper_viewmodel.dart';
 
 class WrapperTabletView extends StatelessWidget {
@@ -15,12 +16,20 @@ class WrapperTabletView extends StatelessWidget {
         WrapperViewModel model,
         Widget? child,
       ) {
-        return const Scaffold(
-          body: Center(
-            child: Text(
-              'Wrapper Tablet View',
+        return Scaffold(
+          appBar: AppBar(),
+          drawer: Drawer(
+            child: ListView(
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.settings),
+                  title: const Text('Settings'),
+                  onTap: model.moveToSettings,
+                ),
+              ],
             ),
           ),
+          body: const ChatTabletView(),
         );
       },
     );

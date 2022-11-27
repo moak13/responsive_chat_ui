@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../view_model/wrapper_viewmodel.dart';
+import '../../widget/get_index_view.dart';
 
 class WrapperMobileView extends StatelessWidget {
   const WrapperMobileView({Key? key}) : super(key: key);
@@ -15,11 +16,23 @@ class WrapperMobileView extends StatelessWidget {
         WrapperViewModel model,
         Widget? child,
       ) {
-        return const Scaffold(
-          body: Center(
-            child: Text(
-              'Wrapper Mobile View',
-            ),
+        return Scaffold(
+          body: GetIndexView(
+            index: model.currentIndex,
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: model.currentIndex,
+            onTap: model.setIndex,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.chat),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                label: '',
+              ),
+            ],
           ),
         );
       },
