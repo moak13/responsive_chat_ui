@@ -8,6 +8,7 @@ import '../../features/features.dart';
     AdaptiveRoute(page: SplashView, initial: true),
     AdaptiveRoute(page: SettingsView),
     AdaptiveRoute(page: ChatView),
+    AdaptiveRoute(page: WrapperView)
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
