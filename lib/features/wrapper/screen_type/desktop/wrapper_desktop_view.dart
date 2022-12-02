@@ -20,6 +20,7 @@ class WrapperDesktopView extends StatelessWidget {
           body: Row(
             children: [
               NavigationRail(
+                extended: true,
                 selectedIndex: model.currentIndex,
                 onDestinationSelected: model.setIndex,
                 destinations: const [

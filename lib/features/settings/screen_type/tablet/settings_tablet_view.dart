@@ -15,9 +15,8 @@ class SettingsTabletView extends StatelessWidget {
         SettingsViewModel model,
         Widget? child,
       ) {
-        return Scaffold(
-          appBar: AppBar(),
-          body: const Center(
+        return const Scaffold(
+          body: Center(
             child: Text(
               'Settings Tablet View',
             ),
