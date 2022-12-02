@@ -30,6 +30,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.2
+  dual_screen: ^1.0.3
   flutter:
     sdk: flutter
   flutter_localizations:

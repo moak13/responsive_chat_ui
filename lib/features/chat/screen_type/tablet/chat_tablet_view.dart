@@ -1,6 +1,8 @@
+import 'package:dual_screen/dual_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../core/core.dart';
 import '../../view_model/chat_viewmodel.dart';
 
 class ChatTabletView extends StatelessWidget {
@@ -8,6 +10,7 @@ class ChatTabletView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeMg.init(context);
     return ViewModelBuilder<ChatViewModel>.reactive(
       viewModelBuilder: () => ChatViewModel(),
       builder: (
@@ -15,10 +18,104 @@ class ChatTabletView extends StatelessWidget {
         ChatViewModel model,
         Widget? child,
       ) {
-        return const Scaffold(
-          body: Center(
-            child: Text(
-              'Chat Tablet View',
+        return Scaffold(
+          backgroundColor: Palette.scaffoldColor,
+          body: TwoPane(
+            paneProportion: 0.3,
+            startPane: ListView(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: SizeMg.height(50),
+                    left: SizeMg.width(15),
+                    right: SizeMg.width(10),
+                  ),
+                  child: Row(
+                    children: [
+                      const Expanded(
+                        flex: 2,
+                        child: CustomTextField(
+                          hintText: 'search...',
+                        ),
+                      ),
+                      SizedBox(
+                        width: SizeMg.width(5),
+                      ),
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CustomIconButton(
+                              icon: const Icon(
+                                Icons.search,
+                                color: Palette.white,
+                              ),
+                              color: Palette.gray,
+                              onTap: () {},
+                            ),
+                            CustomIconButton(
+                              icon: const Icon(
+                                Icons.add,
+                                color: Palette.white,
+                              ),
+                              color: Palette.blue,
+                              onTap: () {},
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: SizeMg.height(200),
+                  child: ListView.separated(
+                    padding: EdgeInsets.only(
+                      top: SizeMg.height(38),
+                      left: SizeMg.width(15),
+                    ),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return const StoryBubble();
+                    },
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        width: SizeMg.width(15),
+                      );
+                    },
+                    itemCount: 7,
+                  ),
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.only(
+                    top: SizeMg.height(20),
+                  ),
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 8,
+                  itemBuilder: (context, index) {
+                    return MessageTile(
+                      image: '',
+                      initials: 'MK',
+                      name: 'Michael Kalango',
+                      lastMessage: 'Let\'s keep cooking',
+                      time: 'Tue',
+                      onTap: () {},
+                    );
+                  },
+                ),
+              ],
+            ),
+            endPane: Center(
+              child: Text(
+                'Message Detail View',
+                style: TextStyle(
+                  color: Palette.white,
+                  fontSize: SizeMg.text(20),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
             ),
           ),
         );

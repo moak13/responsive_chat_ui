@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../chat/screen_type/chat_screen_type.dart';
 import '../../view_model/wrapper_viewmodel.dart';
+import '../../widget/get_index_view.dart';
 
 class WrapperTabletView extends StatelessWidget {
   const WrapperTabletView({Key? key}) : super(key: key);
@@ -17,19 +17,29 @@ class WrapperTabletView extends StatelessWidget {
         Widget? child,
       ) {
         return Scaffold(
-          appBar: AppBar(),
-          drawer: Drawer(
-            child: ListView(
-              children: [
-                ListTile(
-                  leading: const Icon(Icons.settings),
-                  title: const Text('Settings'),
-                  onTap: model.moveToSettings,
+          body: Row(
+            children: [
+              NavigationRail(
+                selectedIndex: model.currentIndex,
+                onDestinationSelected: model.setIndex,
+                destinations: const [
+                  NavigationRailDestination(
+                    icon: Icon(Icons.chat),
+                    label: Text('Chat'),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.settings),
+                    label: Text('Settings'),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: GetIndexView(
+                  index: model.currentIndex,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          body: const ChatTabletView(),
         );
       },
     );
