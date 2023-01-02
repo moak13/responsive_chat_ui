@@ -8,10 +8,10 @@ class ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout.builder(
-      mobile: (context) => const ChatMobileView(),
-      tablet: (context) => const ChatTabletView(),
-      desktop: (context) => const ChatDesktopView(),
+    return ScreenTypeLayout(
+      mobile: const ChatMobileView(),
+      tablet: ChatTabletView(),
+      desktop: ChatDesktopView(),
     );
   }
 }

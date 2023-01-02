@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../utils/utils.dart';
 
-class MessageAvatar extends StatelessWidget {
+class CustomAvatar extends StatelessWidget {
   final String image;
   final String initials;
-  const MessageAvatar({
+  const CustomAvatar({
     super.key,
     required this.image,
     required this.initials,

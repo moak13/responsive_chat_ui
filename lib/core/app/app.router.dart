@@ -19,11 +19,14 @@ class Routes {
 
   static const wrapperView = '/wrapper-view';
 
+  static const messagesView = '/messages-view';
+
   static const all = <String>{
     splashView,
     settingsView,
     chatView,
     wrapperView,
+    messagesView,
   };
 }
 
@@ -44,6 +47,10 @@ class StackedRouter extends _i1.RouterBase {
     _i1.RouteDef(
       Routes.wrapperView,
       page: _i2.WrapperView,
+    ),
+    _i1.RouteDef(
+      Routes.messagesView,
+      page: _i2.MessagesView,
     ),
   ];
 
@@ -69,6 +76,12 @@ class StackedRouter extends _i1.RouterBase {
     _i2.WrapperView: (data) {
       return _i1.buildAdaptivePageRoute<dynamic>(
         builder: (context) => const _i2.WrapperView(),
+        settings: data,
+      );
+    },
+    _i2.MessagesView: (data) {
+      return _i1.buildAdaptivePageRoute<dynamic>(
+        builder: (context) => const _i2.MessagesView(),
         settings: data,
       );
     },
@@ -131,6 +144,20 @@ extension NavigatorStateExtension on _i3.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.wrapperView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToMessagesView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.messagesView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
