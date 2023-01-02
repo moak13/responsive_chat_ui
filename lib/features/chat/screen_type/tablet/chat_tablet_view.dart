@@ -1,12 +1,16 @@
 import 'package:dual_screen/dual_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_chat_ui/features/messages/screen_type/messages_screen_type.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../core/core.dart';
 import '../../view_model/chat_viewmodel.dart';
 
+// ignore: must_be_immutable
 class ChatTabletView extends StatelessWidget {
-  const ChatTabletView({Key? key}) : super(key: key);
+  ChatTabletView({Key? key}) : super(key: key);
+
+  int? selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -101,21 +105,33 @@ class ChatTabletView extends StatelessWidget {
                       name: 'Michael Kalango',
                       lastMessage: 'Let\'s keep cooking',
                       time: 'Tue',
-                      onTap: () {},
+                      isSelected: selectedIndex == index,
+                      onTap: () {
+                        selectedIndex = index;
+                        model.notifyListeners();
+                      },
                     );
                   },
                 ),
               ],
             ),
-            endPane: Center(
-              child: Text(
-                'Message Detail View',
-                style: TextStyle(
-                  color: Palette.white,
-                  fontSize: SizeMg.text(20),
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+            endPane: Builder(
+              builder: (context) {
+                if (selectedIndex == -1) {
+                  return Center(
+                    child: Text(
+                      'No Message(s) selected',
+                      style: TextStyle(
+                        color: Palette.white,
+                        fontSize: SizeMg.text(20),
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  );
+                }
+
+                return const MessagesTabletView();
+              },
             ),
           ),
         );

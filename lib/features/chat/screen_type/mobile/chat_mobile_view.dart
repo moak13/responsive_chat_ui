@@ -98,7 +98,7 @@ class ChatMobileView extends StatelessWidget {
                     name: 'Michael Kalango',
                     lastMessage: 'Let\'s keep cooking',
                     time: 'Tue',
-                    onTap: () {},
+                    onTap: model.actionMoveToMessages,
                   );
                 },
               ),

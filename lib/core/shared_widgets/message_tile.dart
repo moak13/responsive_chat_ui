@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../utils/utils.dart';
-import 'message_avatar.dart';
+import 'custom_avatar.dart';
 
 class MessageTile extends StatelessWidget {
   final String image;
@@ -10,6 +10,7 @@ class MessageTile extends StatelessWidget {
   final String lastMessage;
   final String time;
   final VoidCallback onTap;
+  final bool isSelected;
   const MessageTile({
     super.key,
     required this.image,
@@ -18,41 +19,45 @@ class MessageTile extends StatelessWidget {
     required this.lastMessage,
     required this.time,
     required this.onTap,
+    this.isSelected = false,
   });
 
   @override
   Widget build(BuildContext context) {
     SizeMg.init(context);
-    return ListTile(
-      leading: MessageAvatar(
-        image: image,
-        initials: initials,
-      ),
-      title: Text(
-        name,
-        style: TextStyle(
-          color: Palette.white,
-          fontWeight: FontWeight.w400,
-          fontSize: SizeMg.text(15),
+    return Container(
+      color: isSelected ? Palette.gray : Palette.transparent,
+      child: ListTile(
+        leading: CustomAvatar(
+          image: image,
+          initials: initials,
         ),
-      ),
-      subtitle: Text(
-        lastMessage,
-        style: TextStyle(
-          color: Palette.white,
-          fontWeight: FontWeight.w300,
-          fontSize: SizeMg.text(13),
+        title: Text(
+          name,
+          style: TextStyle(
+            color: Palette.white,
+            fontWeight: FontWeight.w400,
+            fontSize: SizeMg.text(15),
+          ),
         ),
-      ),
-      trailing: Text(
-        time,
-        style: TextStyle(
-          color: Palette.white,
-          fontWeight: FontWeight.w400,
-          fontSize: SizeMg.text(15),
+        subtitle: Text(
+          lastMessage,
+          style: TextStyle(
+            color: Palette.white,
+            fontWeight: FontWeight.w300,
+            fontSize: SizeMg.text(13),
+          ),
         ),
+        trailing: Text(
+          time,
+          style: TextStyle(
+            color: Palette.white,
+            fontWeight: FontWeight.w400,
+            fontSize: SizeMg.text(15),
+          ),
+        ),
+        onTap: onTap,
       ),
-      onTap: onTap,
     );
   }
 }
