@@ -8,10 +8,10 @@ class WrapperView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout(
-      mobile: const WrapperMobileView(),
-      tablet: const WrapperTabletView(),
-      desktop: const WrapperDesktopView(),
+    return ScreenTypeLayout.builder(
+      mobile: (context) => const WrapperMobileView(),
+      tablet: (context) => const WrapperTabletView(),
+      desktop: (context) => const WrapperDesktopView(),
     );
   }
 }

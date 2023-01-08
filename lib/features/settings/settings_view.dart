@@ -8,10 +8,10 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout(
-      mobile: const SettingsMobileView(),
-      tablet: const SettingsTabletView(),
-      desktop: const SettingsDesktopView(),
+    return ScreenTypeLayout.builder(
+      mobile: (context) => const SettingsMobileView(),
+      tablet: (context) => const SettingsTabletView(),
+      desktop: (context) => const SettingsDesktopView(),
     );
   }
 }
