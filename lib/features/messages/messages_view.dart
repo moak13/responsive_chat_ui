@@ -8,10 +8,10 @@ class MessagesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout(
-      mobile: const MessagesMobileView(),
-      tablet: const MessagesTabletView(),
-      desktop: const MessagesDesktopView(),
+    return ScreenTypeLayout.builder(
+      mobile: (context) => const MessagesMobileView(),
+      tablet: (context) => const MessagesTabletView(),
+      desktop: (context) => const MessagesDesktopView(),
     );
   }
 }

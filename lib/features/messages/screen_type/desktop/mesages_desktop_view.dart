@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_chat_ui/core/core.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../core/core.dart';
 import '../../view_model/messages_viewmodel.dart';
 import '../../widgets/message_bubble.dart';
 
